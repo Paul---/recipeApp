@@ -1,6 +1,25 @@
 * {
   margin: 0;
   padding: 0;
-  border: 1px blue dotted;
+  /* border: 1px blue dotted; */
 }
 
+body{
+  padding:0px 3px;
+}
+
+h1{
+  display:inline;
+  vertical-align: top;
+  font-size:35px;
+  margin-left:5px;
+}
+
+.logo{
+  width:20%;
+  border-radius:8px;
+}
+
+.hidden {
+  display:none;
+}
