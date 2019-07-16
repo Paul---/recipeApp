@@ -11,18 +11,18 @@
 
 <body>
 <section role="marquee" class="top-section">
-  <img role="img" src="" alt="Logo" class="logo">
-  <input role="search" type="search" name="search" id="search-ingredients" value="Search For Recipes By Ingredients">
-  <input role="search" type="search" name="search" id="search-ethnicity" value="Search For Recipes By Ethnicity">
+  <img role="img" src="images\food.jpg" alt="Logo" class="logo">
+  <h1>Food 4 Fun</h1>
+  <input role="search" type="search" name="search" id="search-ingredients" placeholder="Search By Ingredients">
   <input role="button" type="submit" value="Search" class="search-btn">
 </section>
 
 <aside role="combobox" class="recipe-list-section">
-  <h3 class="recipelist-h3">Recipe List Goes Here</h3>
+  <h3 class="recipelist-h3">Suggested Recipes</h3>
   <ol class="recipe-list"></ol>
 </aside>
 
-<main role="main" class="highlighted-recipe">
+<main role="main" class="highlighted-recipe hidden">
   Main Recipe Section Here
   <header>
        <h2 role="heading" class="recipe-title-hero">Recipe Title</h2>
@@ -35,8 +35,9 @@
   </section>
 </main>
 
-<aside role="list" class="shopping-list">
-  Shopping List Here
+<aside role="list" class="shopping-list-section hidden">
+  <h3 class="shopping-list-header">Items needed for this recipe</h3>
+  <ul class="shopping-list"></ul>
 </aside>
 
 
