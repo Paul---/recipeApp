@@ -1,5 +1,5 @@
 'use strict'
-
+const apiKey = `0f0c58362031c1b4629fe2a06ecfebc2`;
 let ingredients = 'i=chocolate';
 
 //event listeners
@@ -29,7 +29,7 @@ async function returnRecipeArray(ingredients) {
 async function displayRecipes(recipeArr) {
   $('.recipe-list').html('');
   recipeArr.forEach(el => {
-    $(`<li>${el.title} <br> <a href="${el.href}" target="_blank" ><img src='${el.thumbnail}' alt=${el.title} /> </a> <br> ${el.ingredients}
+    $(`<li>${el.title} <br> <a href="${el.href}" target="_blank" ><img class="thumbnail-img" src='${el.thumbnail}' alt=${el.title} /> </a> <br> ${el.ingredients}
     </li>`).appendTo('.recipe-list');
   })
 }
@@ -50,4 +50,4 @@ async function loadPage(ingredients) {
 }
 
 //initial page load
-$(loadPage(ingredients));
+//$(loadPage(ingredients));

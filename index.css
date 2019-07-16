@@ -20,6 +20,23 @@ h1{
   border-radius:8px;
 }
 
+#search-ingredients{
+  width:80%;
+  margin:2px;
+  border:1px lightgrey solid;
+  border-radius:3px;
+}
+
+.search-btn{
+  width:fit-content;
+  border:1px grey solid;
+  border-radius:3px;
+}
+
+.thumbnail-img{
+border-radius:3px;
+}
+
 .hidden {
   display:none;
 }
