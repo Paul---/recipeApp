@@ -8,6 +8,10 @@ a {
   text-decoration: none;
 }
 
+a {
+  text-decoration: none;
+}
+
 body {
  background-color:rgb(253, 200, 85);
 }
@@ -55,12 +59,17 @@ h1 {
 }
 
 .recipe-title-div {
- display: inline-block;
+  display: inline-block;
   width: 73%;
+  height:80px;
+  position:relative;
+  bottom:64px;
 }
 
 .recipe-title {
   font-size: 19px;
+  position:relative;
+  top:25px;
 }
 
 .hidden {
