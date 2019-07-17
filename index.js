@@ -1,5 +1,5 @@
 'use strict'
-const apiKey = `4b871c8253ab9b5fd7195ae15a5ea46b`;
+const apiKey = `340c0e8204c153aec46ae2103ad8e6eb`;
 let ingredients = 'chocolate';
 
 //event listeners ********************************************************
@@ -18,7 +18,7 @@ function formatIngredients(ingredients) {
 }
 
 async function returnRecipeArray(ingredients) {
-  let URL = `https://www.food2fork.com/api/search?key=${apiKey}&q=${ingredients}`;
+  let URL = `https://www.food2fork.com/api/search?&key=${apiKey}&q=${ingredients}&sort=r/`;
   let resultsArr = await fetch(URL).then(res => res.json()).then(res => res);
   return resultsArr;
 }
@@ -50,11 +50,10 @@ async function displaySelectedRecipe(recipeId) {
   let chosenRecipe = await fetch(`https://www.food2fork.com/api/get?key=${apiKey}&rId=${recipeId}`).then(res => res.json());
   //display large img with description and ingredients for printing
   let ingredientsList = '';
-  chosenRecipe.recipe.ingredients.forEach(el => {
+  await chosenRecipe.recipe.ingredients.forEach(el => {
     ingredientsList += `<li class="ingredients-li">${el}</li>`;
   });
-  console.log(ingredientsList);
-  $('.recipe-list').html(`<section role="main" class="chosenRecipe-div"><img src="${chosenRecipe.recipe.image_url}" alt="${chosenRecipe.recipe.title}" /><br><ul class="recipe-inigredients">${ingredientsList}</ul></section>`);
+  $('.recipe-list').html(`<section role="main" class="chosenRecipe-div"><h2 class="chosen-recipe-h2">${chosenRecipe.recipe.title}</h2><figure><img class="chosen-img" src="${chosenRecipe.recipe.image_url}" alt="${chosenRecipe.recipe.title}" title="${chosenRecipe.recipe.title}" /><figcaption>Published by: ${chosenRecipe.recipe.publisher}</figcaption></figure><br><ul class="recipe-inigredients">${ingredientsList}</ul></section>`);
 }
 
 function displayShoppingList() {
