@@ -26,7 +26,7 @@ async function returnRecipeArray(ingredients) {
 async function displayRecipes(recipeArr) {
   $('.recipe-list').html('');
   recipeArr.recipes.forEach(el => {
-    $(`<li class="recipe-li"> <a href="https://www.food2fork.com/api/get?key=${apiKey}&rId=35382" target="_blank" ><img class="thumbnail-img" src='${el.image_url}' alt=${el.title} /> </a> <div class='recipe-title-div'> <h4 class="recipe-title">${el.title}</h4></div>
+    $(`<li class="recipe-li"><a href="https://www.food2fork.com/api/get?key=${apiKey}&rId=35382" target="_blank" ><img class="thumbnail-img" src='${el.image_url}' alt=${el.title} /></a> <div class='recipe-title-div'><h4 class="recipe-title">${el.title}</h4></div>
     </li>`).appendTo('.recipe-list');
   })
 }

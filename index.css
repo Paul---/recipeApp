@@ -55,14 +55,17 @@ h1 {
 }
 
 .recipe-title-div {
-  border:1px green dotted;
   display: inline-block;
   width: 73%;
+  height:80px;
+  position:relative;
+  bottom:64px;
 }
 
 .recipe-title {
-  border:2px pink dotted;
-    font-size: 19px;
+  font-size: 19px;
+  position:relative;
+  top:25px;
 }
 
 .hidden {
