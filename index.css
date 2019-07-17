@@ -54,8 +54,8 @@ h1 {
 .thumbnail-img {
   border-radius: 3px;
   width: 25%;
-  height: 100%;
-  border:none;
+  height: 98%;
+  border:1px solid lightgrey;
 }
 
 .recipe-title-div {
