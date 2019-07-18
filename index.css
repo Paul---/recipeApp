@@ -8,12 +8,9 @@ a {
   text-decoration: none;
 }
 
-a {
-  text-decoration: none;
-}
-
 body {
   background-color: rgb(253, 200, 85);
+  padding: 3px;
 }
 
 h1 {
@@ -70,6 +67,7 @@ h1 {
   font-size: 18px;
   position: relative;
   top: 35px;
+  margin:3px 0px 3px 3px;
 }
 
 .chosenRecipe-div {
@@ -91,6 +89,24 @@ h1 {
   max-height: 300px;
   margin-right: auto;
   margin-left: auto;
+}
+
+figcaption{
+  margin:2px 2px 1px 4px;
+}
+
+.btn{
+  background-color: rgb(25, 136, 225);
+  color:white;
+  border:none;
+  width:fit-content;
+  margin:3px;
+  padding:2px 3px;
+}
+
+.print-recipe-btn,
+.directons-btn{
+  padding: 4px 3px 2px 3px;
 }
 
 .ingredients-li {
