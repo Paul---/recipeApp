@@ -32,10 +32,15 @@ let apiKey = `e9bbd0a67061b4725aab9461813323c3`;
 let ingredients = '';
 
 //event listeners ********************************************************
-$('.search-btn').on('click submit', function (e) {
+$('.search-btn').on('click', function (e) {
   e.preventDefault();
   search($('#search-ingredients').val());
 });
+$('#search-ingredients').on('keyup',(e)=>{
+  if (e.keyCode === 13){
+    search($('#search-ingredients').val());
+  }
+})
 
 
 // end event listeners******************************************************
@@ -102,16 +107,18 @@ async function displaySelectedRecipe(recipeId) {
 
 
 async function loadPage(ingredients) {
+  $('#javascript-not-loading').remove();
   let arr = await returnRecipeArray(ingredients);
   displayRecipes(arr);
 }
 
 function printFunction() {
-  console.log('Clicked print');
+  //open print page dialog
   print($('.chosenRecipe-div'));
 }
 
 function getDirections(url) {
+  //open new page with recipie instructions
   window.open(url);
 }
 
