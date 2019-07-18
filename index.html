@@ -10,36 +10,22 @@
 </head>
 
 <body>
-<section role="marquee" class="top-section">
-  <a href="index.html" class="logo-a"><img role="img" src="images\food.jpg" alt="Logo" class="logo" /></a>
-  <h1>Food 4 Fun</h1>
-  <input role="search" type="search" name="search" id="search-ingredients" placeholder="Search By Ingredient">
-  <input role="button" type="submit" value="Search" class="search-btn">
-</section>
-
-<aside role="combobox" class="recipe-list-section">
-  <h3 class="recipelist-h3">Suggested Recipes</h3>
-  <ol class="recipe-list"></ol>
-</aside>
-
-<main role="main" class="highlighted-recipe hidden">
-  Main Recipe Section Here
-  <header>
-       <h2 role="heading" class="recipe-title-hero">Recipe Title</h2>
-       <h4 role="heading" class="recipe-link-hero">Recipe Link</h4>
-  </header>
-  <img role="img" src="#" alt="test" class="hero-img">
-  <section class="details-section">
- 
-    <p>Details Here</p>
+  <section role="marquee" class="top-section">
+    <a href="index.html" class="logo-a"><img role="img" src="images\food.jpg" alt="Logo" class="logo" /></a>
+    <h1>Food 4 Fun</h1>
+    <input role="search" type="search" name="search" id="search-ingredients" placeholder="Search By Ingredient">
+    <input role="button" type="submit" value="Search" class="search-btn">
   </section>
-</main>
 
-<aside role="list" class="shopping-list-section hidden">
-  <h3 class="shopping-list-header">Items needed for this recipe</h3>
-  <ul class="shopping-list"></ul>
-</aside>
+  <main role="main" class="highlighted-recipe">
+    <section class="selected-recipe-sec"></section>
 
+    <aside role="combobox" class="recipe-list-section">
+      <h3 class="recipelist-h3">Suggested Recipes</h3>
+      <ol class="recipe-list"></ol>
+    </aside>
+
+  </main>
 
   <script src="https://code.jquery.com/jquery-3.4.1.min.js"
     integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
