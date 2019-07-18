@@ -1,17 +1,18 @@
 'use strict'
 
 
-// da5cea6d324729686c62d2d31d91b0be
+
 // cd576fafe1aba67942e8ee42df5168e9
 // 340c0e8204c153aec46ae2103ad8e6eb
 // 930bc5b5a9b1fb99dcb2a2e011f64900
 // 86bdf91aef7ebad9e0ff67d0b34be435
 // e9bbd0a67061b4725aab9461813323c3
 //used up
+// da5cea6d324729686c62d2d31d91b0be
 // cdcaf77900cc416836fc5f4cdba35d47
 // 3a2fbfa047a5b46ac2a4491aa18105c8
 // 5137c8f4084b3e19a8803e2baf2f7604
-const apiKey = `cdcaf77900cc416836fc5f4cdba35d47`;
+const apiKey = `da5cea6d324729686c62d2d31d91b0be`;
 let ingredients = '';
 
 //event listeners ********************************************************
@@ -38,13 +39,15 @@ async function returnRecipeArray(ingredients) {
 async function displayRecipes(recipeArr) {
   $('.recipe-list').html('');
   recipeArr.recipes.forEach(el => {
-    $(`<li value="${el.recipe_id}" class="recipe-li"><a href="#" ><img class="thumbnail-img" src='${el.image_url}' alt=${el.title} /></a> <div class='recipe-title-div'><h4 class="recipe-title">${el.title}</h4></div>
-    </li>`).appendTo('.recipe-list')
+    $(`<a href='#top'><li value="${el.recipe_id}" class="recipe-li"><img class="thumbnail-img" src='${el.image_url}' alt=${el.title} /><div class='recipe-title-div'><h4 class="recipe-title">${el.title}</h4></div>
+    </li></a>`).appendTo('.recipe-list')
   });
   //add event listener to each li
   $('li').on('click', function (e) {
     e.preventDefault();
     displaySelectedRecipe($(e.target).closest('li').val());
+    document.body.scrollTop = document.documentElement.scrollTop = 0;
+
   });
 }
 
