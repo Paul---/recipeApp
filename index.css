@@ -6,6 +6,7 @@
 
 a {
   text-decoration: none;
+  color:rgb(25, 136, 225);
 }
 
 body {
@@ -62,6 +63,10 @@ h2{
   font-size: 1em;
   font-weight:bold;
   letter-spacing: .1pc;
+}
+
+li{
+  list-style:none;
 }
 
 .recipe-li {
