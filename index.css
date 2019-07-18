@@ -9,7 +9,7 @@ a {
 }
 
 body {
-  background-color: rgb(253, 200, 85);
+  background-color: #ffb42a;
   padding: 3px;
 }
 
@@ -17,7 +17,14 @@ h1 {
   display: inline;
   vertical-align: top;
   font-size: 35px;
-  margin-left: 5px;
+  margin-left: 15px;
+  color:rgb(25, 136, 225);
+}
+
+h2{
+  font-size: 18px;
+  color:white;
+  margin-left:10px;
 }
 
 .logo {
@@ -37,6 +44,17 @@ h1 {
   width: fit-content;
   border: 1px grey solid;
   border-radius: 3px;
+}
+
+#instructions{
+  padding:8px;
+  color:white;
+  background-color:none;
+  border:2px solid white;
+  border-radius:3px;
+  margin:5px 1px;
+  font-weight:bold;
+  letter-spacing: .1rem;
 }
 
 .recipe-li {
