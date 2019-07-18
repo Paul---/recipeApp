@@ -10,7 +10,10 @@ const keyArr = [
   'cd576fafe1aba67942e8ee42df5168e9',
   '340c0e8204c153aec46ae2103ad8e6eb',
   '930bc5b5a9b1fb99dcb2a2e011f64900',
-  '86bdf91aef7ebad9e0ff67d0b34be435'
+  '86bdf91aef7ebad9e0ff67d0b34be435',
+  'cfa1a4080b06c23d6c1add846c030fbb',
+  '762f624be45e412f54061859d2c8e171',
+  'd9bbaa08023b6ca45f80c07c90afba3c'
 ];
 
 
@@ -47,8 +50,7 @@ function formatIngredients(ingredients) {
 }
 
 async function returnRecipeArray(ingredients) {
-  //***************************************************
-  //***************************************************************************8 */
+
   let keyNum = 0;
   let response;
   do {
@@ -75,7 +77,6 @@ async function displayRecipes(recipeArr) {
     e.preventDefault();
     displaySelectedRecipe($(e.target).closest('li').val());
     document.documentElement.scrollTop = 0;
-
   });
 }
 
@@ -97,13 +98,13 @@ async function displaySelectedRecipe(recipeId) {
   });
   $('.selected-recipe-sec').removeClass('hidden').html(`<section role="main" class="chosenRecipe-div"><h2 role="heading" class="chosen-recipe-h2">${chosenRecipe.recipe.title}</h2><figure><img role="image" class="chosen-img" src="${chosenRecipe.recipe.image_url}" alt="${chosenRecipe.recipe.title}" title="${chosenRecipe.recipe.title}" /> <figcaption role="caption">Published by: ${chosenRecipe.recipe.publisher}</figcaption></figure><br>  <button role="button" class="btn print-recipe-btn" type="button" value="Print" onclick="printFunction()">Print</button>
   <button role="button" class="btn directons-btn" type="button" value="Get Directions" onclick="getDirections('${chosenRecipe.recipe.source_url}')">Get Directions</button> <ul class="recipe-inigredients">${ingredientsList}</ul></section>`);
-
 }
 
 
 async function loadPage(ingredients) {
   let arr = await returnRecipeArray(ingredients);
   displayRecipes(arr);
+  $('#scripts-error-msg').remove();
 }
 
 function printFunction() {
