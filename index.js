@@ -69,8 +69,8 @@ async function returnRecipeArray(ingredients) {
 async function displayRecipes(recipeArr) {
   $('.recipe-list').html('');
   recipeArr.recipes.forEach(el => {
-    $(`<li value="${el.recipe_id}" class="recipe-li"><img class="thumbnail-img" src='${el.image_url}' alt=${el.title} /><div class='recipe-title-div'><h4 class="recipe-title">${el.title}</h4></div>
-    </li>`).appendTo('.recipe-list')
+    $(`<a href="#top"><li value="${el.recipe_id}" class="recipe-li"><img class="thumbnail-img" src='${el.image_url}' alt=${el.title} /><div class='recipe-title-div'><h4 class="recipe-title">${el.title}</h4></div>
+    </li></a>`).appendTo('.recipe-list')
   });
   //add event listener to each li
   $('li').on('click', function (e) {
