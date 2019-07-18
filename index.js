@@ -85,17 +85,18 @@ async function loadPage(ingredients) {
 }
 
 function printFunction() {
-  console.log('Clicked print');
+  //open print page dialog
   print($('.chosenRecipe-div'));
 }
 
 function getDirections(url) {
+  //open new page with recipie instructions
   window.open(url);
 }
 
 
 //initial page load
-$(loadPage(ingredients));
+//$(loadPage(ingredients));
 
 //  chosenRecipe.recipe returns -->
 // { publisher: "Simply Recipes", f2f_url: "http://food2fork.com/view/36611", ingredients: Array(9), source_url: "http://www.simplyrecipes.com/recipes/moms_roast_turkey/", recipe_id: "36611", … }

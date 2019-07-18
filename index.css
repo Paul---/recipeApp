@@ -1,7 +1,7 @@
 * {
   margin: 0;
   padding: 0;
-
+  /* border:1px blue dotted; */
 }
 
 a {
@@ -11,6 +11,7 @@ a {
 body {
   background-color: #ffb42a;
   padding: 3px;
+  font-family: 'Merriweather', serif;
 }
 
 h1 {
@@ -19,13 +20,18 @@ h1 {
   font-size: 35px;
   margin-left: 15px;
   color:rgb(25, 136, 225);
+  font-family: 'Roboto', sans-serif;
+
 }
 
 h2{
-  font-size: 18px;
+  width: fit-content;
+  display: block;
+  font-size: 1em;
+  letter-spacing: .1pc;
   color:white;
-  margin-left:10px;
-}
+  margin:3px;
+  }
 
 .logo {
   width: 20%;
@@ -53,8 +59,9 @@ h2{
   border:2px solid white;
   border-radius:3px;
   margin:5px 1px;
+  font-size: 1em;
   font-weight:bold;
-  letter-spacing: .1rem;
+  letter-spacing: .1pc;
 }
 
 .recipe-li {
@@ -92,6 +99,7 @@ h2{
   margin: 3px;
   background-color: white;
   border-radius: 3px;
+  padding-bottom:5px;
 }
 
 .chosen-recipe-h2 {
@@ -110,7 +118,7 @@ h2{
 }
 
 figcaption{
-  margin:2px 2px 1px 4px;
+  margin:5px 2px 1px 10px;
 }
 
 .btn{
@@ -125,7 +133,10 @@ figcaption{
 
 .print-recipe-btn,
 .directons-btn{
-  padding: 4px 3px 2px 3px;
+  display: inline-block;
+  width:135px;
+  padding: 4px 5px 2px 5px;
+  margin-left:35px;
 }
 
 .ingredients-li {
