@@ -102,6 +102,7 @@ figcaption{
   width:fit-content;
   margin:3px;
   padding:2px 3px;
+  border-radius: 3px;
 }
 
 .print-recipe-btn,
