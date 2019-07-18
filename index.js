@@ -1,5 +1,18 @@
 'use strict'
 
+const keyArr = [
+'e9bbd0a67061b4725aab9461813323c3',
+'da5cea6d324729686c62d2d31d91b0be',
+'cdcaf77900cc416836fc5f4cdba35d47',
+'3a2fbfa047a5b46ac2a4491aa18105c8',
+'5137c8f4084b3e19a8803e2baf2f7604',
+'3de2f708c1e89205a74b2f2481c957bc',
+'cd576fafe1aba67942e8ee42df5168e9',
+'340c0e8204c153aec46ae2103ad8e6eb',
+'930bc5b5a9b1fb99dcb2a2e011f64900',
+'86bdf91aef7ebad9e0ff67d0b34be435'
+];
+
 
 
 // cd576fafe1aba67942e8ee42df5168e9
@@ -8,12 +21,14 @@
 // 86bdf91aef7ebad9e0ff67d0b34be435
 
 //used up
+// 3de2f708c1e89205a74b2f2481c957bc
 // e9bbd0a67061b4725aab9461813323c3
 // da5cea6d324729686c62d2d31d91b0be
 // cdcaf77900cc416836fc5f4cdba35d47
 // 3a2fbfa047a5b46ac2a4491aa18105c8
 // 5137c8f4084b3e19a8803e2baf2f7604
-const apiKey = `e9bbd0a67061b4725aab9461813323c3`;
+
+let apiKey = `e9bbd0a67061b4725aab9461813323c3`;
 let ingredients = '';
 
 //event listeners ********************************************************
@@ -32,8 +47,20 @@ function formatIngredients(ingredients) {
 }
 
 async function returnRecipeArray(ingredients) {
+  //***************************************************
+  //***************************************************************************8 */
+  let keyNum = 0;
+  let response;
+  do{
+    apiKey=keyArr[keyNum];
+    response = await fetch(`https://www.food2fork.com/api/search?key=${apiKey}&q=${ingredients}&sort=r/`).then(res => res.json() );
+    apiKey=keyArr[keyNum];
+    keyNum++;
+  } while(response.hasOwnProperty('error'));
+ 
   let URL = `https://www.food2fork.com/api/search?&key=${apiKey}&q=${ingredients}&sort=r/`;
   let resultsArr = await fetch(URL).then(res => res.json()).then(res => res);
+  console.log(keyNum);
   return resultsArr;
 }
 
@@ -72,6 +99,7 @@ async function displaySelectedRecipe(recipeId) {
   <button role="button" class="btn directons-btn" type="button" value="Get Directions" onclick="getDirections('${chosenRecipe.recipe.source_url}')">Get Directions</button> <ul class="recipe-inigredients">${ingredientsList}</ul></section>`);
 
 }
+
 
 async function loadPage(ingredients) {
   let arr = await returnRecipeArray(ingredients);
