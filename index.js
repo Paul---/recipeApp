@@ -1,6 +1,6 @@
 'use strict'
 
-// cdcaf77900cc416836fc5f4cdba35d47
+
 // da5cea6d324729686c62d2d31d91b0be
 // cd576fafe1aba67942e8ee42df5168e9
 // 340c0e8204c153aec46ae2103ad8e6eb
@@ -8,9 +8,10 @@
 // 86bdf91aef7ebad9e0ff67d0b34be435
 // e9bbd0a67061b4725aab9461813323c3
 //used up
+// cdcaf77900cc416836fc5f4cdba35d47
 // 3a2fbfa047a5b46ac2a4491aa18105c8
 // 5137c8f4084b3e19a8803e2baf2f7604
-const apiKey = `5137c8f4084b3e19a8803e2baf2f7604`;
+const apiKey = `cdcaf77900cc416836fc5f4cdba35d47`;
 let ingredients = '';
 
 //event listeners ********************************************************
@@ -64,11 +65,9 @@ async function displaySelectedRecipe(recipeId) {
   await chosenRecipe.recipe.ingredients.forEach(el => {
     ingredientsList += `<li class="ingredients-li">${el}</li>`;
   });
-  $('.selected-recipe-sec').removeClass('hidden').html(`<section role="main" class="chosenRecipe-div"><h2 class="chosen-recipe-h2">${chosenRecipe.recipe.title}</h2><figure><img class="chosen-img" src="${chosenRecipe.recipe.image_url}" alt="${chosenRecipe.recipe.title}" title="${chosenRecipe.recipe.title}" /> <figcaption>Published by: ${chosenRecipe.recipe.publisher}</figcaption></figure><br>  <button class="btn print-recipe-btn" type="button" value="Print">Print These Ingredients</button>
-  <button class="btn directons-btn" type="button" value="Get Directions" onclick="getDirections('${chosenRecipe.recipe.source_url}')">Get Directions</button> <ul class="recipe-inigredients">${ingredientsList}</ul></section>`);
+  $('.selected-recipe-sec').removeClass('hidden').html(`<section role="main" class="chosenRecipe-div"><h2 role="heading" class="chosen-recipe-h2">${chosenRecipe.recipe.title}</h2><figure><img role="image" class="chosen-img" src="${chosenRecipe.recipe.image_url}" alt="${chosenRecipe.recipe.title}" title="${chosenRecipe.recipe.title}" /> <figcaption role="caption">Published by: ${chosenRecipe.recipe.publisher}</figcaption></figure><br>  <button role="button" class="btn print-recipe-btn" type="button" value="Print" onclick="printFunction()">Print</button>
+  <button role="button" class="btn directons-btn" type="button" value="Get Directions" onclick="getDirections('${chosenRecipe.recipe.source_url}')">Get Directions</button> <ul class="recipe-inigredients">${ingredientsList}</ul></section>`);
 
-  // $('.print-recipe-btn').on('click', printFunction);
-  // $('.directons-btn').on('click', getDirections(event, chosenRecipe.recipe.source_url) )
 }
 
 async function loadPage(ingredients) {
@@ -77,15 +76,15 @@ async function loadPage(ingredients) {
 }
 
 function printFunction() {
-  //event.preventDefault();
   console.log('Clicked print');
+  print($('.chosenRecipe-div'));
 }
 
 function getDirections(url) {
-  //event.preventDefault();
-  console.log('directions website will launch');
   window.open(url);
 }
+
+
 //initial page load
 $(loadPage(ingredients));
 
