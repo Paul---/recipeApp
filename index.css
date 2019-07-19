@@ -75,6 +75,20 @@ h2 {
   top: .5px;
 }
 
+.loading-div{
+  margin-top:15px;
+  background-color: white;
+  border-radius:8px;
+  height:250px;
+  text-align: center;
+}
+
+.loading-msg-h3{
+  position: relative;
+  top:45px;
+  color: rgb(25, 136, 225);
+}
+
 .recipelist-h3 {
   margin: 3px 10px;
 }
