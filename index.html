@@ -11,29 +11,29 @@
 </head>
 
 <body>
-  <a name="top"></a>
   <section role="marquee" class="top-section">
     <a href="index.html" class="logo-a"><img role="img" src="images\food.jpg" alt="Logo" class="logo" /></a>
     <h1>Food 4 Fun</h1>
     <h2>Have Fun With Your Food!</h2>
-    <h3 id="instructions">Search For Great Recipes by Ingredients, Ethnicity or Dish Name</h3>
+    <h3 id="instructions">Search Recipes by Ingredients, Ethnicity or Dish Name</h3>
     <input role="search" type="search" name="search" id="search-ingredients" placeholder="">
     <input role="button" type="submit" value="Search" class="btn search-btn">
   </section>
 
   <main role="main" class="highlighted-recipe" id="top">
+    <h3 role="alertdialog" class="hidden fetching">Fetching your recipe...</h3>
     <section class="selected-recipe-sec"></section>
 
     <aside role="combobox" class="recipe-list-section">
       <div class="loading-div">
-            <h3 class="loading-msg-h3" >Your Patience Will Soon Be Rewarded <br><br>Some Great Recipe Suggestions Are On Their Way</h3>
+            <h3 class="loading-msg-h3" >Great Recipe Suggestions Are On Their Way...</h3>
       </div>
   
-      <h3 class="recipelist-h3 hidden">Suggested Recipes</h3>
-      <ol class="recipe-list"></ol>
+      <h3 role="heading" class="recipelist-h3 hidden">Suggested Recipes</h3>
+      <ol role="list" class="recipe-list"></ol>
     </aside>
     <br>
-    <p id="scripts-error-msg">--Scripts must be enabled to use this app. Please enable javascript functionality--</p>
+    <p role="text" id="scripts-error-msg">--Scripts must be enabled to use this app. Please enable javascript functionality--</p>
   </main>
 
   <script src="https://code.jquery.com/jquery-3.4.1.min.js"
