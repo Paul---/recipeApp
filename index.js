@@ -75,7 +75,10 @@ async function displayRecipes(recipeObj) {
     $('li').on('click', function (e) {
       e.preventDefault();
       displaySelectedRecipe($(e.target).closest('li').val());
-      document.documentElement.scrollTop = 100;
+      //document.documentElement.scrollTop = 100;
+      window.scroll({
+        top:100
+      })
     });
   }
 

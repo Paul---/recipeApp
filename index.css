@@ -116,7 +116,7 @@ li {
   border: 1px solid lightgrey;
   border-radius: 3px;
   margin: 3px;
-  height: 85px;
+  height: 105px;
 }
 
 .thumbnail-img {
@@ -131,7 +131,7 @@ li {
   width: 69%;
   height: 80px;
   position: relative;
-  bottom: 64px;
+  bottom: 75px;
 }
 
 .recipe-title {
