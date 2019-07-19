@@ -78,29 +78,26 @@ h2 {
   margin-top: 15px;
   background-color: white;
   border-radius: 8px;
-  height: 150px;
+  height: fit-content;
   text-align: center;
 }
 
 .loading-msg-h3 {
   margin: 10px;
-  position: relative;
-  top: 45px;
   color: rgb(25, 136, 225);
 }
 
 .fetching,
 .no-results {
+  height: fit-content;
   padding:20px;
   margin-top: 15px;
   text-align: center;
   border-radius: 8px;
-  
   background-color: white;
 }
 
 .no-results {
-  height: 109px;
   font-size: 18px;
   padding-bottom: 15px;
 }
