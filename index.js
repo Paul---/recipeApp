@@ -57,6 +57,7 @@ async function displayRecipes(recipeArr) {
     </li></a>`).appendTo('.recipe-list')
   });
   //add event listener to each li
+  $('.recipelist-h3').removeClass('hidden')
   $('li').on('click', function (e) {
     e.preventDefault();
     displaySelectedRecipe($(e.target).closest('li').val());
@@ -85,9 +86,10 @@ async function displaySelectedRecipe(recipeId) {
 }
 
 async function loadPage(ingredients) {
-  let arr = await returnRecipeArray(ingredients);
-  displayRecipes(arr);
   $('#scripts-error-msg').remove();
+  let arr = await returnRecipeArray(ingredients);
+  $('.loading-div').remove();
+  displayRecipes(arr);
 }
 
 function printFunction() {
