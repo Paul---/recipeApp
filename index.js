@@ -16,23 +16,7 @@ const keyArr = [
   'd9bbaa08023b6ca45f80c07c90afba3c'
 ];
 
-
-
-// cd576fafe1aba67942e8ee42df5168e9
-// 340c0e8204c153aec46ae2103ad8e6eb
-// 930bc5b5a9b1fb99dcb2a2e011f64900
-// 86bdf91aef7ebad9e0ff67d0b34be435
-
-//used up
-// 3de2f708c1e89205a74b2f2481c957bc
-// e9bbd0a67061b4725aab9461813323c3
-// da5cea6d324729686c62d2d31d91b0be
-// cdcaf77900cc416836fc5f4cdba35d47
-// 3a2fbfa047a5b46ac2a4491aa18105c8
-// 5137c8f4084b3e19a8803e2baf2f7604
-
-let apiKey = `e9bbd0a67061b4725aab9461813323c3`;
-let ingredients = '';
+let apiKey, ingredients = '';
 
 //event listeners ********************************************************
 $('.search-btn').on('click submit', function (e) {
@@ -99,7 +83,6 @@ async function displaySelectedRecipe(recipeId) {
   $('.selected-recipe-sec').removeClass('hidden').html(`<section role="main" class="chosenRecipe-div"><h2 role="heading" class="chosen-recipe-h2">${chosenRecipe.recipe.title}</h2><figure><img role="image" class="chosen-img" src="${chosenRecipe.recipe.image_url}" alt="${chosenRecipe.recipe.title}" title="${chosenRecipe.recipe.title}" /> <figcaption role="caption">Published by: ${chosenRecipe.recipe.publisher}</figcaption></figure><br>  <button role="button" class="btn print-recipe-btn" type="button" value="Print" onclick="printFunction()">Print</button>
   <button role="button" class="btn directons-btn" type="button" value="Get Directions" onclick="getDirections('${chosenRecipe.recipe.source_url}')">Get Directions</button> <ul class="recipe-inigredients">${ingredientsList}</ul></section>`);
 }
-
 
 async function loadPage(ingredients) {
   let arr = await returnRecipeArray(ingredients);
