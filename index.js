@@ -20,10 +20,18 @@ keyArr = [
   'd9bbaa08023b6ca45f80c07c90afba3c'
 ];
 //event listeners ********************************************************
-$('.search-btn').on('click submit', function (e) {
+$('.search-btn').on('click', function (e) {
   e.preventDefault();
   search($('#search-ingredients').val());
 });
+
+$('#search-ingredients').on('keypress', (e)=>{
+if(e.keyCode===13){
+  e.preventDefault();
+  search($('#search-ingredients').val());
+  }
+})
+
 
 
 // end event listeners******************************************************
@@ -62,7 +70,7 @@ async function displayRecipes(recipeArr) {
   $('li').on('click', function (e) {
     e.preventDefault();
     displaySelectedRecipe($(e.target).closest('li').val());
-    document.documentElement.scrollTop = 200;
+    document.documentElement.scrollTop = 100;
   });
 }
 
@@ -76,14 +84,14 @@ async function search(query) {
 
 async function displaySelectedRecipe(recipeId) {
   //fetch individual recipe
-  $('.fetching').toggleClass('hidden');
+  $('.fetching').removeClass('hidden');
   let chosenRecipe = await fetch(`https://www.food2fork.com/api/get?key=${apiKey}&rId=${recipeId}`).then(res => res.json());
   //display large img with description and ingredients for printing
   let ingredientsList = '';
   await chosenRecipe.recipe.ingredients.forEach(el => {
     ingredientsList += `<li class="ingredients-li">${el}</li>`;
   });
-  $('.fetching').toggleClass('hidden');
+  $('.fetching').addClass('hidden');
 
   $('.selected-recipe-sec').removeClass('hidden').html(`<section role="main" class="chosenRecipe-div"><div class="container chosen-recipe-h2-div"><h2 role="heading" class="chosen-recipe-h2">${chosenRecipe.recipe.title}</h2></div><figure><img role="image" class="chosen-img" src="${chosenRecipe.recipe.image_url}" alt="${chosenRecipe.recipe.title}" title="${chosenRecipe.recipe.title}" /><div class="container published-by-caption"> <figcaption role="caption">Published by: ${chosenRecipe.recipe.publisher}</figcaption></div></figure><br> <div class="container button-div"> <button role="button" class="btn print-recipe-btn" type="button" value="Print" onclick="printFunction()">Print</button>
   <button role="button" class="btn directons-btn" type="button" value="Get Directions" onclick="getDirections('${chosenRecipe.recipe.source_url}')">Get Directions</button></div> <div class="recipe-list-div"><ul class="recipe-inigredients">${ingredientsList}</ul></div></section>`);
