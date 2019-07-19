@@ -3,6 +3,15 @@
   padding: 0;
 }
 
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+
+  select:focus,
+  textarea:focus,
+  input:focus {
+    font-size: 16px;
+  }
+}
+
 a {
   text-decoration: none;
   color: rgb(25, 136, 225);
