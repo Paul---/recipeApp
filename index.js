@@ -1,8 +1,9 @@
 'use strict'
 
-const keyArr = [
-  '5c690c2fd121d8d3d51a524d7ed62c05',
+let apiKey, ingredients = '',
+keyArr = [
   '43bff83dd6c189993665cc861c3d9680',
+  '5c690c2fd121d8d3d51a524d7ed62c05',
   '9c26949234983d6dc94c84ffc96f0fad',
   '86bdf91aef7ebad9e0ff67d0b34be435',
   'e9bbd0a67061b4725aab9461813323c3',
@@ -18,9 +19,6 @@ const keyArr = [
   '762f624be45e412f54061859d2c8e171',
   'd9bbaa08023b6ca45f80c07c90afba3c'
 ];
-
-let apiKey, ingredients = '';
-
 //event listeners ********************************************************
 $('.search-btn').on('click submit', function (e) {
   e.preventDefault();
@@ -41,6 +39,7 @@ async function returnRecipeArray(ingredients) {
   let keyNum = 0;
   let response;
   do {
+
     apiKey = keyArr[keyNum];
     response = await fetch(`https://www.food2fork.com/api/search?key=${apiKey}&q=${ingredients}&sort=r/`).then(res => res.json());
     apiKey = keyArr[keyNum];
@@ -49,7 +48,6 @@ async function returnRecipeArray(ingredients) {
 
   let URL = `https://www.food2fork.com/api/search?&key=${apiKey}&q=${ingredients}&sort=r/`;
   let resultsArr = await fetch(URL).then(res => res.json()).then(res => res);
-  console.log(keyNum);
   return resultsArr;
 }
 
@@ -64,7 +62,7 @@ async function displayRecipes(recipeArr) {
   $('li').on('click', function (e) {
     e.preventDefault();
     displaySelectedRecipe($(e.target).closest('li').val());
-    document.documentElement.scrollTop = 0;
+    document.documentElement.scrollTop = 200;
   });
 }
 
@@ -99,7 +97,6 @@ async function loadPage(ingredients) {
 }
 
 function printFunction() {
-  console.log('Clicked print');
   print($('.chosenRecipe-div'));
 }
 
