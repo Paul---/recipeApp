@@ -1,36 +1,41 @@
 'use strict'
+//Api Endpoints
+const ApiUrlGet = `https://www.food2fork.com/api/get?key=`,
+  ApiUrlSearch = `https://www.food2fork.com/api/search?key=`;
+
 
 let apiKey, ingredients = '',
-keyArr = [
-  '43bff83dd6c189993665cc861c3d9680',
-  '5c690c2fd121d8d3d51a524d7ed62c05',
-  '9c26949234983d6dc94c84ffc96f0fad',
-  '86bdf91aef7ebad9e0ff67d0b34be435',
-  'e9bbd0a67061b4725aab9461813323c3',
-  'da5cea6d324729686c62d2d31d91b0be',
-  'cdcaf77900cc416836fc5f4cdba35d47',
-  '3a2fbfa047a5b46ac2a4491aa18105c8',
-  '5137c8f4084b3e19a8803e2baf2f7604',
-  '3de2f708c1e89205a74b2f2481c957bc',
-  'cd576fafe1aba67942e8ee42df5168e9',
-  '340c0e8204c153aec46ae2103ad8e6eb',
-  '930bc5b5a9b1fb99dcb2a2e011f64900',
-  'cfa1a4080b06c23d6c1add846c030fbb',
-  '762f624be45e412f54061859d2c8e171',
-  'd9bbaa08023b6ca45f80c07c90afba3c',
-  'f64610acd7e381627234affbfcc83367',
-  '3abdfd2143493a0f2a5234fb51f9bd9f'
-];
+//api Keys required
+  keyArr = [
+    '43bff83dd6c189993665cc861c3d9680',
+    '5c690c2fd121d8d3d51a524d7ed62c05',
+    '9c26949234983d6dc94c84ffc96f0fad',
+    '86bdf91aef7ebad9e0ff67d0b34be435',
+    'e9bbd0a67061b4725aab9461813323c3',
+    'da5cea6d324729686c62d2d31d91b0be',
+    'cdcaf77900cc416836fc5f4cdba35d47',
+    '3a2fbfa047a5b46ac2a4491aa18105c8',
+    '5137c8f4084b3e19a8803e2baf2f7604',
+    '3de2f708c1e89205a74b2f2481c957bc',
+    'cd576fafe1aba67942e8ee42df5168e9',
+    '340c0e8204c153aec46ae2103ad8e6eb',
+    '930bc5b5a9b1fb99dcb2a2e011f64900',
+    'cfa1a4080b06c23d6c1add846c030fbb',
+    '762f624be45e412f54061859d2c8e171',
+    'd9bbaa08023b6ca45f80c07c90afba3c',
+    'f64610acd7e381627234affbfcc83367',
+    '3abdfd2143493a0f2a5234fb51f9bd9f'
+  ];
 //event listeners ********************************************************
 $('.search-btn').on('click', function (e) {
   e.preventDefault();
   search($('#search-ingredients').val());
 });
 //call search on enter button
-$('#search-ingredients').on('keypress', (e)=>{
-if(e.keyCode===13){
-  e.preventDefault();
-  search($('#search-ingredients').val());
+$('#search-ingredients').on('keypress', (e) => {
+  if (e.keyCode === 13) {
+    e.preventDefault();
+    search($('#search-ingredients').val());
   }
 })
 
@@ -50,22 +55,21 @@ async function returnRecipeArray(ingredients) {
   let response;
   do {
     apiKey = keyArr[keyNum];
-    response = await fetch(`https://www.food2fork.com/api/search?key=${apiKey}&q=${ingredients}&sort=r/`).then(res => res.json());
+    response = await fetch(`${ApiUrlSearch}${apiKey}&q=${ingredients}&sort=r/`).then(res => res.json());
     apiKey = keyArr[keyNum];
     keyNum++;
   } while (response.hasOwnProperty('error'));
 
-  let URL = `https://www.food2fork.com/api/search?&key=${apiKey}&q=${ingredients}&sort=r/`;
+  let URL = `${ApiUrlSearch}${apiKey}&q=${ingredients}&sort=r/`;
   let resultsObj = await fetch(URL).then(res => res.json()).then(res => res);
   return resultsObj;
 }
 
 async function displayRecipes(recipeObj) {
   $('.recipe-list').html('');
-  if (recipeObj.recipes.length===0){
-    console.log(recipeObj.recipes.length + ' You got zero results');
-   $('.no-results').removeClass('hidden');
-  }else{
+  if (recipeObj.recipes.length === 0) {
+    $('.no-results').removeClass('hidden');
+  } else {
     recipeObj.recipes.forEach(el => {
       $(`<li value="${el.recipe_id}" class="recipe-li"><img class="thumbnail-img" src='${el.image_url}' alt=${el.title} /><div class='recipe-title-div'><h4 class="recipe-title">${el.title}</h4></div>
     </li>`).appendTo('.recipe-list')
@@ -77,7 +81,7 @@ async function displayRecipes(recipeObj) {
       displaySelectedRecipe($(e.target).closest('li').val());
       //document.documentElement.scrollTop = 100;
       window.scroll({
-        top:100
+        top: 100
       })
     });
   }
@@ -98,7 +102,7 @@ async function search(query) {
 async function displaySelectedRecipe(recipeId) {
   //fetch individual recipe
   $('.fetching').removeClass('hidden');
-  let chosenRecipe = await fetch(`https://www.food2fork.com/api/get?key=${apiKey}&rId=${recipeId}`).then(res => res.json());
+  let chosenRecipe = await fetch(`${ApiUrlGet}${apiKey}&rId=${recipeId}`).then(res => res.json());
   //display large img with description and ingredients for printing
   let ingredientsList = '';
   await chosenRecipe.recipe.ingredients.forEach(el => {
