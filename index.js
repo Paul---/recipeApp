@@ -1,6 +1,10 @@
 'use strict'
 
 const keyArr = [
+  '5c690c2fd121d8d3d51a524d7ed62c05',
+  '43bff83dd6c189993665cc861c3d9680',
+  '9c26949234983d6dc94c84ffc96f0fad',
+  '86bdf91aef7ebad9e0ff67d0b34be435',
   'e9bbd0a67061b4725aab9461813323c3',
   'da5cea6d324729686c62d2d31d91b0be',
   'cdcaf77900cc416836fc5f4cdba35d47',
@@ -10,7 +14,6 @@ const keyArr = [
   'cd576fafe1aba67942e8ee42df5168e9',
   '340c0e8204c153aec46ae2103ad8e6eb',
   '930bc5b5a9b1fb99dcb2a2e011f64900',
-  '86bdf91aef7ebad9e0ff67d0b34be435',
   'cfa1a4080b06c23d6c1add846c030fbb',
   '762f624be45e412f54061859d2c8e171',
   'd9bbaa08023b6ca45f80c07c90afba3c'
@@ -53,8 +56,8 @@ async function returnRecipeArray(ingredients) {
 async function displayRecipes(recipeArr) {
   $('.recipe-list').html('');
   recipeArr.recipes.forEach(el => {
-    $(`<a href="#top"><li value="${el.recipe_id}" class="recipe-li"><img class="thumbnail-img" src='${el.image_url}' alt=${el.title} /><div class='recipe-title-div'><h4 class="recipe-title">${el.title}</h4></div>
-    </li></a>`).appendTo('.recipe-list')
+    $(`<li value="${el.recipe_id}" class="recipe-li"><img class="thumbnail-img" src='${el.image_url}' alt=${el.title} /><div class='recipe-title-div'><h4 class="recipe-title">${el.title}</h4></div>
+    </li>`).appendTo('.recipe-list')
   });
   //add event listener to each li
   $('.recipelist-h3').removeClass('hidden')
@@ -75,14 +78,17 @@ async function search(query) {
 
 async function displaySelectedRecipe(recipeId) {
   //fetch individual recipe
+  $('.fetching').toggleClass('hidden');
   let chosenRecipe = await fetch(`https://www.food2fork.com/api/get?key=${apiKey}&rId=${recipeId}`).then(res => res.json());
   //display large img with description and ingredients for printing
   let ingredientsList = '';
   await chosenRecipe.recipe.ingredients.forEach(el => {
     ingredientsList += `<li class="ingredients-li">${el}</li>`;
   });
-  $('.selected-recipe-sec').removeClass('hidden').html(`<section role="main" class="chosenRecipe-div"><h2 role="heading" class="chosen-recipe-h2">${chosenRecipe.recipe.title}</h2><figure><img role="image" class="chosen-img" src="${chosenRecipe.recipe.image_url}" alt="${chosenRecipe.recipe.title}" title="${chosenRecipe.recipe.title}" /> <figcaption role="caption">Published by: ${chosenRecipe.recipe.publisher}</figcaption></figure><br>  <button role="button" class="btn print-recipe-btn" type="button" value="Print" onclick="printFunction()">Print</button>
-  <button role="button" class="btn directons-btn" type="button" value="Get Directions" onclick="getDirections('${chosenRecipe.recipe.source_url}')">Get Directions</button> <ul class="recipe-inigredients">${ingredientsList}</ul></section>`);
+  $('.fetching').toggleClass('hidden');
+
+  $('.selected-recipe-sec').removeClass('hidden').html(`<section role="main" class="chosenRecipe-div"><div class="container chosen-recipe-h2-div"><h2 role="heading" class="chosen-recipe-h2">${chosenRecipe.recipe.title}</h2></div><figure><img role="image" class="chosen-img" src="${chosenRecipe.recipe.image_url}" alt="${chosenRecipe.recipe.title}" title="${chosenRecipe.recipe.title}" /><div class="container published-by-caption"> <figcaption role="caption">Published by: ${chosenRecipe.recipe.publisher}</figcaption></div></figure><br> <div class="container button-div"> <button role="button" class="btn print-recipe-btn" type="button" value="Print" onclick="printFunction()">Print</button>
+  <button role="button" class="btn directons-btn" type="button" value="Get Directions" onclick="getDirections('${chosenRecipe.recipe.source_url}')">Get Directions</button></div> <div class="recipe-list-div"><ul class="recipe-inigredients">${ingredientsList}</ul></div></section>`);
 }
 
 async function loadPage(ingredients) {
