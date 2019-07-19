@@ -84,6 +84,7 @@ h2 {
 }
 
 .loading-msg-h3{
+  margin:10px;
   position: relative;
   top:45px;
   color: rgb(25, 136, 225);
