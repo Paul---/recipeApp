@@ -89,12 +89,20 @@ h2 {
   color: rgb(25, 136, 225);
 }
 
-.fetching {
+.fetching,
+.no-results {
+  padding:20px;
   margin-top: 15px;
   text-align: center;
   border-radius: 8px;
-  height: 75px;
+  
   background-color: white;
+}
+
+.no-results {
+  height: 89px;
+  font-size: 18px;
+  padding-bottom: 15px;
 }
 
 .recipelist-h3 {

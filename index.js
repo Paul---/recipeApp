@@ -58,25 +58,31 @@ async function returnRecipeArray(ingredients) {
   let URL = `https://www.food2fork.com/api/search?&key=${apiKey}&q=${ingredients}&sort=r/`;
   let resultsObj = await fetch(URL).then(res => res.json()).then(res => res);
   return resultsObj;
-  
 }
 
-async function displayRecipes(recipeArr) {
+async function displayRecipes(recipeObj) {
   $('.recipe-list').html('');
-  recipeArr.recipes.forEach(el => {
-    $(`<li value="${el.recipe_id}" class="recipe-li"><img class="thumbnail-img" src='${el.image_url}' alt=${el.title} /><div class='recipe-title-div'><h4 class="recipe-title">${el.title}</h4></div>
+  if (recipeObj.recipes.length===0){
+    console.log(recipeObj.recipes.length + ' You got zero results');
+   $('.no-results').removeClass('hidden');
+  }else{
+    recipeObj.recipes.forEach(el => {
+      $(`<li value="${el.recipe_id}" class="recipe-li"><img class="thumbnail-img" src='${el.image_url}' alt=${el.title} /><div class='recipe-title-div'><h4 class="recipe-title">${el.title}</h4></div>
     </li>`).appendTo('.recipe-list')
-  });
-  //add event listener to each li
-  $('.recipelist-h3').removeClass('hidden')
-  $('li').on('click', function (e) {
-    e.preventDefault();
-    displaySelectedRecipe($(e.target).closest('li').val());
-    document.documentElement.scrollTop = 100;
-  });
+    });
+    //add event listener to each li
+    $('.recipelist-h3').removeClass('hidden')
+    $('li').on('click', function (e) {
+      e.preventDefault();
+      displaySelectedRecipe($(e.target).closest('li').val());
+      document.documentElement.scrollTop = 100;
+    });
+  }
+
 }
 
 async function search(query) {
+  $('.no-results').addClass('hidden');
   $('.fetching').removeClass('hidden');
   let formattedIngs = formatIngredients(query);
   let recipeArr = await returnRecipeArray(formattedIngs);
