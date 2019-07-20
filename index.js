@@ -5,7 +5,7 @@ const ApiUrlGet = `https://www.food2fork.com/api/get?key=`,
 
 
 let apiKey, ingredients = '',
-//api Keys required
+// Required API Keys
   keyArr = [
     '43bff83dd6c189993665cc861c3d9680',
     '5c690c2fd121d8d3d51a524d7ed62c05',
@@ -89,17 +89,22 @@ async function displayRecipes(recipeObj) {
 }
 
 async function search(query) {
+  //make sure 'no results' message is hidden
   $('.no-results').addClass('hidden');
+  //show fetching message
   $('.fetching').removeClass('hidden');
   let formattedIngs = formatIngredients(query);
   let recipeArr = await returnRecipeArray(formattedIngs);
   await displayRecipes(recipeArr);
+  console.log(recipeArr.recipes[0].recipe_id);
+  displaySelectedRecipe(recipeArr.recipes[0].recipe_id);
+  //hide fetching message
   $('.fetching').addClass('hidden');
   $('#search-ingredients').val('');
   $('.selected-recipe-sec').html('');
 }
 
-async function displaySelectedRecipe(recipeId) {
+async function displaySelectedRecipe(recipeId=47746) {
   //fetch individual recipe
   $('.fetching').removeClass('hidden');
   let chosenRecipe = await fetch(`${ApiUrlGet}${apiKey}&rId=${recipeId}`).then(res => res.json());
@@ -119,6 +124,7 @@ async function loadPage(ingredients) {
   let arr = await returnRecipeArray(ingredients);
   $('.loading-div').remove();
   displayRecipes(arr);
+  displaySelectedRecipe(arr.recipes[Math.floor(Math.random()* Math.floor(30))].recipe_id);
 }
 
 function printFunction() {

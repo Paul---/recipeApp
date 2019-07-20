@@ -1,6 +1,7 @@
 * {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
 body {
@@ -13,10 +14,6 @@ body {
   max-width: 1200px;
   margin-left: auto;
   margin-right: auto;
-}
-
-.top-section{
-  max-width:
 }
 
 a {
@@ -62,7 +59,10 @@ h2 {
 }
 
 #instructions {
-  padding: 8px;
+  text-align: center;
+  padding-top: 8px;
+  padding-left: 1%;
+  padding-right: 1%;
   color: white;
   background-color: none;
   border: 2px solid white;
@@ -98,6 +98,9 @@ h2 {
   border-radius: 8px;
   height: fit-content;
   text-align: center;
+  max-width: 752px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .loading-msg-h3 {
@@ -107,6 +110,9 @@ h2 {
 
 .fetching,
 .no-results {
+  max-width: 752px;
+  margin-left: auto;
+  margin-right: auto;
   height: fit-content;
   padding: 20px;
   margin-top: 15px;
@@ -121,7 +127,13 @@ h2 {
 }
 
 .recipelist-h3 {
-  margin: 3px 10px;
+  text-align: center;
+  max-width: 752px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 3px;
+  border-radius: 3px;
+  letter-spacing: .3pc;
 }
 
 li {
@@ -137,6 +149,7 @@ li {
   margin-left: auto;
   height: 105px;
   max-width: 750px;
+  letter-spacing: .1pc;
 }
 
 .thumbnail-img {
@@ -151,6 +164,7 @@ li {
   display: inline-block;
   width: 62%;
   height: 80px;
+  vertical-align: middle;
   position: relative;
   bottom: 75px;
 }
@@ -169,7 +183,6 @@ li {
 }
 
 .chosenRecipe-div {
-
   margin: 3px;
   background-color: white;
   border-radius: 3px;
@@ -179,6 +192,8 @@ li {
 .chosen-recipe-h2 {
   text-align: center;
   color: currentColor;
+  letter-spacing: .1pc;
+
 }
 
 .chosen-img {
@@ -262,6 +277,7 @@ figcaption {
 }
 
 @media screen and (-webkit-min-device-pixel-ratio:0) {
+
   select:focus,
   textarea:focus,
   input:focus {
@@ -269,16 +285,115 @@ figcaption {
   }
 }
 
+@media screen and (min-width:550px) {
+  h1 {
+    font-size: 4.2em;
+    padding-top: 1%;
+  }
+}
+
+/*iPad*/
 @media screen and (min-width:760px) {
   h2 {
     font-size: 2.4em;
   }
-}
 
-@media screen and (min-width:550px) {
-  h1 {
-    font-size: 3.2em;
-    padding-top: 1%;
+  .recipelist-h3 {
+    font-size: 2.1em;
+    padding: 5px 0px;
   }
 
+  #instructions {
+    font-size: 1.3em;
+    letter-spacing: .2pc;
+  }
+
+}
+
+/* iPad Pro  normal hold*/
+@media screen and (min-width:1020px) {
+  .chosen-img {
+    max-width: 50%;
+    max-height: 550px;
+  }
+
+  .top-section {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 760px;
+  }
+
+  .search-btn {
+    margin-left: 25px;
+  }
+
+  .recipe-title {
+    font-size: 1.5em;
+  }
+
+  .chosenRecipe-div {
+    max-width: 752px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+}
+
+/*ipad Pro Sideways*/
+@media screen and (min-width:1365px) {
+  .full-div {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .top-section {
+    display: block;
+    height: 250px;
+
+  }
+
+  .loading-div{
+    display: flex;
+    width: 1000px;
+    justify-content: center;
+    margin-left: 220px;
+    padding: 0;
+  }
+  .loading-msg-h3{
+    font-size: 25px;
+    margin-left:auto;
+    margin-right: auto;
+  }
+
+  .recipe-list-section {
+    width:50%;
+    font-size: .9em;
+  }
+  ol{
+    height:745px;
+    overflow: scroll;
+  }
+
+  .selected-recipe-sec {
+    display: inline-block;
+    width:48%;
+    float:right;
+    margin-top: 48px;
+    height:fit-content;
+  }
+  .chosenRecipe-div{
+    height: 745px;
+    overflow: scroll;
+  }
+  li{
+    border-radius:100%;
+  }
+
+  .recipe-list-div{
+    width:400px;
+    letter-spacing: 0.05pc;
+  }
+    .chosen-img {
+      display: block;
+    }
 }
