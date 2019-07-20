@@ -164,6 +164,7 @@ li {
   display: inline-block;
   width: 62%;
   height: 80px;
+  vertical-align: middle;
   position: relative;
   bottom: 75px;
 }
@@ -369,5 +370,18 @@ figcaption {
   }
   .chosenRecipe-div{
     height: 745px;
+    overflow: scroll;
   }
+  li{
+    border-radius:100%;
+  }
+
+  .recipe-list-div{
+    width:400px;
+    letter-spacing: 0.05pc;
+  }
+    .chosen-img {
+      display: block;
+      
+    }
 }
