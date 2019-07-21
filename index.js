@@ -83,14 +83,12 @@ async function displayRecipes(recipeObj) {
     $('.recipelist-h3').removeClass('hidden')
     $('li').on('click', function (e) {
       e.preventDefault();
-      displaySelectedRecipe($(e.target).closest('li').val());
-      //document.documentElement.scrollTop = 100;
+       displaySelectedRecipe($(e.target).closest('li').attr('value'));
       window.scroll({
         top: 100
       })
     });
   }
-
 }
 
 async function search(query) {
@@ -117,6 +115,7 @@ async function displaySelectedRecipe(recipeId = 47746) {
   //display large img with description and ingredients for printing
   let ingredientsList = '';
   let res = await chosenRecipe.recipe.ingredients;
+
   if (res === undefined) {
     $('.fetching').addClass('hidden');
     alert('Broken Link--Please Try A Different One');
@@ -127,9 +126,26 @@ async function displaySelectedRecipe(recipeId = 47746) {
   //Hide fetching message
   $('.fetching').addClass('hidden');
   //Display selected recipe
-  $('.selected-recipe-sec').removeClass('hidden').html(`<section role="main" class="chosenRecipe-div"><div class="container chosen-recipe-h2-div"><h2 role="heading" class="chosen-recipe-h2">${chosenRecipe.recipe.title}</h2></div><figure><img role="image" class="chosen-img" src="${chosenRecipe.recipe.image_url}" 
-  alt="${chosenRecipe.recipe.title}" title="${chosenRecipe.recipe.title}" /><div class="container published-by-caption"> <figcaption role="caption">Published by: ${chosenRecipe.recipe.publisher}</figcaption></div></figure><br> <div class="container button-div"> <button role="button" class="btn print-recipe-btn" type="button" value="Print" onclick="printFunction()">Print</button>
-  <button role="button" class="btn directons-btn" type="button" value="Get Directions" onclick="getDirections('${chosenRecipe.recipe.source_url}')">Get Directions</button></div> <div class="recipe-list-div"><ul class="recipe-inigredients">${ingredientsList}</ul></div></section>`);
+  $('.selected-recipe-sec').removeClass('hidden').html(`
+  <section role="main" class="chosenRecipe-div">
+  <div class="container chosen-recipe-h2-div">
+    <h2 role="heading" class="chosen-recipe-h2">${chosenRecipe.recipe.title}</h2>
+  </div>
+  <figure> <img role="image" class="chosen-img" src="${chosenRecipe.recipe.image_url}"
+      alt="${chosenRecipe.recipe.title}" title="${chosenRecipe.recipe.title}" />
+    <div class="container published-by-caption">
+      <figcaption role="caption">Published by: ${chosenRecipe.recipe.publisher} </figcaption>
+    </div>
+  </figure> <br>
+  <div class="container button-div"> <button role="button" class="btn print-recipe-btn" type="button" value="Print"
+      onclick="printFunction()">Print</button>
+    <button role="button" class="btn directons-btn" type="button" value="Get Directions"
+      onclick="getDirections('${chosenRecipe.recipe.source_url}')">Get Directions</button> </div>
+  <div class="recipe-list-div">
+    <ul class="recipe-inigredients">${ingredientsList}</ul>
+  </div>
+ </section>
+  `);
 }
 
 async function loadPage(ingredients) {

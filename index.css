@@ -38,20 +38,20 @@ h1 {
   padding-top: 2%;
   margin-left: 8px;
   display: inline-block;
-  font-size: 35px;
+  font-size: 25px;
   color: rgb(25, 136, 225);
   font-family: 'Libre Baskerville', serif;
   background-color: white;
   border-radius: 3px;
   width: 550%;
-
+  letter-spacing: .8pc;
 }
 
 h2 {
   text-align: center;
   width: fit-content;
   display: block;
-  font-size: 1.5em;
+  font-size: 1.2em;
   letter-spacing: .1pc;
   color: white;
   margin-left: auto;
@@ -68,7 +68,7 @@ h2 {
   border: 2px solid white;
   border-radius: 3px;
   margin: 5px 1px;
-  font-size: 1em;
+  font-size: .8em;
   font-weight: bold;
   letter-spacing: .1pc;
 }
@@ -84,7 +84,7 @@ h2 {
 
 .search-btn {
   width: 25%;
-  font-size: 1pc;
+  font-size: .8pc;
   border: none;
   border-radius: 3px;
   height: 28px;
@@ -93,7 +93,7 @@ h2 {
 }
 
 .check-below {
-  font-size: .9em;
+  font-size: .8em;
   margin-top: 3px;
   margin-bottom: 3px;
 }
@@ -144,6 +144,7 @@ h2 {
   margin-bottom: 3px;
   border-radius: 3px;
   letter-spacing: .3pc;
+  font-size: .8em;
 }
 
 li {
@@ -180,7 +181,7 @@ li {
 }
 
 .recipe-title {
-  font-size: 18px;
+  font-size: 16px;
   position: relative;
   top: 35px;
   margin: 3px 0px 3px 9px;
@@ -203,7 +204,7 @@ li {
   text-align: center;
   color: currentColor;
   letter-spacing: .1pc;
-
+  font-size:1.1em;
 }
 
 .chosen-img {
@@ -297,7 +298,7 @@ figcaption {
 
 @media screen and (min-width:550px) {
   h1 {
-    font-size: 4.2em;
+    font-size: 3.2em;
     padding-top: 1%;
   }
 }
@@ -309,7 +310,7 @@ figcaption {
   }
 
   .recipelist-h3 {
-    font-size: 2.1em;
+    font-size: 1.1em;
     padding: 5px 0px;
   }
 
@@ -390,6 +391,7 @@ figcaption {
     font-size: .9em;
     position: relative;
     left: 5px;
+    bottom:35px;
   }
 
   ol {
@@ -400,6 +402,7 @@ figcaption {
   .selected-recipe-sec {
     position: relative;
     right: 5px;
+    bottom:54px;
     display: inline-block;
     width: 48%;
     float: right;
