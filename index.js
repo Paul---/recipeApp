@@ -51,7 +51,6 @@ function formatIngredients(ingredients) {
 }
 
 async function returnRecipeArray(ingredients) {
-
   let keyNum = 0;
   let response;
   do {
@@ -62,7 +61,6 @@ async function returnRecipeArray(ingredients) {
     apiKey = keyArr[keyNum];
     keyNum++;
   } while (response.hasOwnProperty('error'));
-
   let URL = `${ApiUrlSearch}${apiKey}&q=${ingredients}&sort=r/`;
   let resultsObj = await fetch(URL).then(res => res.json()).then(res => res).catch(e => {
     //display network error message
@@ -120,6 +118,7 @@ async function displaySelectedRecipe(recipeId = 47746) {
   let ingredientsList = '';
   let res = await chosenRecipe.recipe.ingredients;
   if (res === undefined) {
+    $('.fetching').addClass('hidden');
     alert('Broken Link--Please Try A Different One');
   }
   res.forEach(el => {
