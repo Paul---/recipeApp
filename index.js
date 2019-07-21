@@ -31,22 +31,18 @@ let apiKey, ingredients = '',
     'f64610acd7e381627234affbfcc83367',
     '3abdfd2143493a0f2a5234fb51f9bd9f'
   ];
-//event listeners ********************************************************
-$('.search-btn').on('click', function (e) {
-  e.preventDefault();
-  search($('#search-ingredients').val());
+
+//event listeners 
+//Serach on click
+$('.search-btn').on('click keypress', function (e) {
+  goSearch(e);
 });
 //call search on enter button
 $('#search-ingredients').on('keypress', (e) => {
-  if (e.keyCode === 13) {
-    e.preventDefault();
-    search($('#search-ingredients').val());
+  if (e.keyCode === 13 ) {
+    goSearch(e);
   }
 })
-
-
-
-// end event listeners******************************************************
 
 function formatIngredients(ingredients) {
   //  return commas separated string of ingredients
@@ -151,6 +147,11 @@ function errorMsg() {
   $('.recipe-list-section').addClass('hidden');
   $('.serverErr').addClass('hidden')
   $('.top-section').append(`<h2 class="serverErr">We're encountering network difficulties. Please check your internet connection and try again.</h2>`);
+}
+
+function goSearch(e){
+  e.preventDefault();
+  search($('#search-ingredients').val());
 }
 
 function printFunction() {
