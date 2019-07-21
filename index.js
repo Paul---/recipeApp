@@ -39,7 +39,7 @@ $('.search-btn').on('click keypress', function (e) {
 });
 //call search on enter button
 $('#search-ingredients').on('keypress', (e) => {
-  if (e.keyCode === 13 ) {
+  if (e.keyCode === 13) {
     goSearch(e);
   }
 })
@@ -51,7 +51,6 @@ function formatIngredients(ingredients) {
 }
 
 async function returnRecipeArray(ingredients) {
-
   let keyNum = 0;
   let response;
   do {
@@ -62,7 +61,6 @@ async function returnRecipeArray(ingredients) {
     apiKey = keyArr[keyNum];
     keyNum++;
   } while (response.hasOwnProperty('error'));
-
   let URL = `${ApiUrlSearch}${apiKey}&q=${ingredients}&sort=r/`;
   let resultsObj = await fetch(URL).then(res => res.json()).then(res => res).catch(e => {
     //display network error message
@@ -74,7 +72,7 @@ async function returnRecipeArray(ingredients) {
 async function displayRecipes(recipeObj) {
   $('.recipe-list').html('');
   if (recipeObj.recipes.length === 0) {
-    $('.fetching').addClass('hidden');
+    $('.fetching-sec').addClass('hidden');
     $('.no-results').removeClass('hidden');
   } else {
     recipeObj.recipes.forEach(el => {
@@ -85,52 +83,69 @@ async function displayRecipes(recipeObj) {
     $('.recipelist-h3').removeClass('hidden')
     $('li').on('click', function (e) {
       e.preventDefault();
-      displaySelectedRecipe($(e.target).closest('li').val());
-      //document.documentElement.scrollTop = 100;
+      displaySelectedRecipe($(e.target).closest('li').attr('value'));
       window.scroll({
         top: 100
       })
     });
   }
-
 }
 
 async function search(query) {
   //make sure 'no results' message is hidden
   $('.no-results').addClass('hidden');
   //show fetching message
-  $('.fetching').removeClass('hidden');
+  $('.fetching-sec').removeClass('hidden');
   let formattedIngs = formatIngredients(query);
-  let recipeArr = await returnRecipeArray(formattedIngs);
-  await displayRecipes(recipeArr);
-  displaySelectedRecipe(recipeArr.recipes[0].recipe_id);
-  //hide fetching message
-  $('.fetching').addClass('hidden');
-  $('#search-ingredients').val('');
-  $('.selected-recipe-sec').html('');
+  let recipeObj = await returnRecipeArray(formattedIngs);
+    await displayRecipes(recipeObj);
+    displaySelectedRecipe(recipeObj.recipes[0].recipe_id);
+    //hide fetching message
+    $('.fetching-sec').addClass('hidden');
+    $('#search-ingredients').val('');
+    $('.selected-recipe-sec').html('');
 }
 
 async function displaySelectedRecipe(recipeId = 47746) {
   //fetch individual recipe
-  $('.fetching').removeClass('hidden');
+  $('.fetching-sec').removeClass('hidden');
   let chosenRecipe = await fetch(`${ApiUrlGet}${apiKey}&rId=${recipeId}`).then(res => res.json()).catch(e => {
     errorMsg();
   });
   //display large img with description and ingredients for printing
   let ingredientsList = '';
   let res = await chosenRecipe.recipe.ingredients;
+
   if (res === undefined) {
+    $('.fetching-sec').addClass('hidden');
     alert('Broken Link--Please Try A Different One');
   }
   res.forEach(el => {
-  ingredientsList += `<li class="ingredients-li">${el}</li>`;
+    ingredientsList += `<li class="ingredients-li">${el}</li>`;
   });
   //Hide fetching message
-  $('.fetching').addClass('hidden');
+  $('.fetching-sec').addClass('hidden');
   //Display selected recipe
-  $('.selected-recipe-sec').removeClass('hidden').html(`<section role="main" class="chosenRecipe-div"><div class="container chosen-recipe-h2-div"><h2 role="heading" class="chosen-recipe-h2">${chosenRecipe.recipe.title}</h2></div><figure><img role="image" class="chosen-img" src="${chosenRecipe.recipe.image_url}" 
-  alt="${chosenRecipe.recipe.title}" title="${chosenRecipe.recipe.title}" /><div class="container published-by-caption"> <figcaption role="caption">Published by: ${chosenRecipe.recipe.publisher}</figcaption></div></figure><br> <div class="container button-div"> <button role="button" class="btn print-recipe-btn" type="button" value="Print" onclick="printFunction()">Print</button>
-  <button role="button" class="btn directons-btn" type="button" value="Get Directions" onclick="getDirections('${chosenRecipe.recipe.source_url}')">Get Directions</button></div> <div class="recipe-list-div"><ul class="recipe-inigredients">${ingredientsList}</ul></div></section>`);
+  $('.selected-recipe-sec').removeClass('hidden').html(`
+  <section role="main" class="chosenRecipe-div">
+  <div class="container chosen-recipe-h2-div">
+    <h2 role="heading" class="chosen-recipe-h2">${chosenRecipe.recipe.title}</h2>
+  </div>
+  <figure> <img role="image" class="chosen-img" src="${chosenRecipe.recipe.image_url}"
+      alt="${chosenRecipe.recipe.title}" title="${chosenRecipe.recipe.title}" />
+    <div class="container published-by-caption">
+      <figcaption role="caption">Published by: ${chosenRecipe.recipe.publisher} </figcaption>
+    </div>
+  </figure> <br>
+  <div class="container button-div"> <button role="button" class="btn print-recipe-btn" type="button" value="Print"
+      onclick="printFunction()">Print</button>
+    <button role="button" class="btn directons-btn" type="button" value="Get Directions"
+      onclick="getDirections('${chosenRecipe.recipe.source_url}')">Get Directions</button> </div>
+  <div class="recipe-list-div">
+    <ul class="recipe-inigredients">${ingredientsList}</ul>
+  </div>
+ </section>
+  `);
 }
 
 async function loadPage(ingredients) {
@@ -143,13 +158,13 @@ async function loadPage(ingredients) {
 
 function errorMsg() {
   //display network error message
-  $('.fetching').addClass('hidden');
+  $('.fetching-sec').addClass('hidden');
   $('.recipe-list-section').addClass('hidden');
   $('.serverErr').addClass('hidden')
   $('.top-section').append(`<h2 class="serverErr">We're encountering network difficulties. Please check your internet connection and try again.</h2>`);
 }
 
-function goSearch(e){
+function goSearch(e) {
   e.preventDefault();
   search($('#search-ingredients').val());
 }
