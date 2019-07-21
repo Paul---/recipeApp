@@ -92,6 +92,12 @@ h2 {
   top: .5px;
 }
 
+.check-below{
+  font-size: .9em;
+  margin-top:3px;
+  margin-bottom: 3px;
+}
+
 .loading-div {
   margin-top: 15px;
   background-color: white;
@@ -351,6 +357,10 @@ figcaption {
     height: 250px;
     max-width:100%;
     margin:2px;
+  }
+
+  .check-below{
+    display: none;
   }
 
   .loading-div {
