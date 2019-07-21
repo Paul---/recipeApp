@@ -55,7 +55,11 @@ async function returnRecipeArray(ingredients) {
   let response;
   do {
     apiKey = keyArr[keyNum];
-    response = await fetch(`${ApiUrlSearch}${apiKey}&q=${ingredients}&sort=r/`).then(res => res.json());
+    response = await fetch(`${ApiUrlSearch}${apiKey}&q=${ingredients}&sort=r/`).then(res => res.json()).catch(e =>{
+      //display network error message
+      $('.recipe-list-section').addClass('hidden');
+      $('.top-section').append(`<h2>We're encountering network difficulties. Please check your internet connection and try again.</h2>`);
+    });
     apiKey = keyArr[keyNum];
     keyNum++;
   } while (response.hasOwnProperty('error'));
@@ -107,7 +111,7 @@ async function search(query) {
 async function displaySelectedRecipe(recipeId=47746) {
   //fetch individual recipe
   $('.fetching').removeClass('hidden');
-  let chosenRecipe = await fetch(`${ApiUrlGet}${apiKey}&rId=${recipeId}`).then(res => res.json());
+  let chosenRecipe = await fetch(`${ApiUrlGet}${apiKey}&rId=${recipeId}`).then(res => res.json()).catch(e=> alert(e));
   //display large img with description and ingredients for printing
   let ingredientsList = '';
   await chosenRecipe.recipe.ingredients.forEach(el => {
