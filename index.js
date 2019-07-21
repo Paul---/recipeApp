@@ -1,5 +1,6 @@
 'use strict'
-//Api Endpoints
+
+//API Endpoints
 const ApiUrlGet = `https://www.food2fork.com/api/get?key=`,
   ApiUrlSearch = `https://www.food2fork.com/api/search?key=`;
 
@@ -55,23 +56,32 @@ async function returnRecipeArray(ingredients) {
   let response;
   do {
     apiKey = keyArr[keyNum];
-    response = await fetch(`${ApiUrlSearch}${apiKey}&q=${ingredients}&sort=r/`).then(res => res.json()).catch(e =>{
+    response = await fetch(`${ApiUrlSearch}${apiKey}&q=${ingredients}&sort=r/`).then(res => res.json()).catch(e => {
       //display network error message
+      $('.fetching').addClass('hidden');
       $('.recipe-list-section').addClass('hidden');
-      $('.top-section').append(`<h2>We're encountering network difficulties. Please check your internet connection and try again.</h2>`);
+      $('.serverErr').addClass('hidden')
+      $('.top-section').append(`<h2 class="serverErr">We're encountering network difficulties. Please check your internet connection and try again.</h2>`);
     });
     apiKey = keyArr[keyNum];
     keyNum++;
   } while (response.hasOwnProperty('error'));
 
   let URL = `${ApiUrlSearch}${apiKey}&q=${ingredients}&sort=r/`;
-  let resultsObj = await fetch(URL).then(res => res.json()).then(res => res);
+  let resultsObj = await fetch(URL).then(res => res.json()).then(res => res).catch(e => {
+    //display network error message
+    $('.fetching').addClass('hidden');
+    $('.recipe-list-section').addClass('hidden');
+    $('.serverErr').addClass('hidden')
+    $('.top-section').append(`<h2 class="serverErr">We're encountering network difficulties. Please check your internet connection and try again.</h2>`);
+  });;
   return resultsObj;
 }
 
 async function displayRecipes(recipeObj) {
   $('.recipe-list').html('');
   if (recipeObj.recipes.length === 0) {
+    $('.fetching').addClass('hidden');
     $('.no-results').removeClass('hidden');
   } else {
     recipeObj.recipes.forEach(el => {
@@ -100,7 +110,6 @@ async function search(query) {
   let formattedIngs = formatIngredients(query);
   let recipeArr = await returnRecipeArray(formattedIngs);
   await displayRecipes(recipeArr);
-  console.log(recipeArr.recipes[0].recipe_id);
   displaySelectedRecipe(recipeArr.recipes[0].recipe_id);
   //hide fetching message
   $('.fetching').addClass('hidden');
@@ -111,7 +120,13 @@ async function search(query) {
 async function displaySelectedRecipe(recipeId = 47746) {
   //fetch individual recipe
   $('.fetching').removeClass('hidden');
-  let chosenRecipe = await fetch(`${ApiUrlGet}${apiKey}&rId=${recipeId}`).then(res => res.json()).catch(e=> alert(e));
+  let chosenRecipe = await fetch(`${ApiUrlGet}${apiKey}&rId=${recipeId}`).then(res => res.json()).catch(e => {
+    //display network error message
+    $('.fetching').addClass('hidden');
+    $('.recipe-list-section').addClass('hidden');
+    $('.serverErr').addClass('hidden')
+    $('.top-section').append(`<h2 class="serverErr">We're encountering network difficulties. Please check your internet connection and try again.</h2>`);
+  });
   //display large img with description and ingredients for printing
   let ingredientsList = '';
   await chosenRecipe.recipe.ingredients.forEach(el => {
