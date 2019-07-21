@@ -7,6 +7,8 @@ const ApiUrlGet = `https://www.food2fork.com/api/get?key=`,
 let apiKey, ingredients = '',
   // Required API Keys
   keyArr = [
+    'beeff984a8932bdb8ff4d9ebe82b8e5d',
+    '6fa2d41235620165b889e088cbfb0fee',
     '64cbf1f4967702e0bbab5feab34b4ff3',
     '0600cbf997ef65c5402b91cc5609bfb9',
     '7242ecab3cd3fd117c6b8e50bd010bef',
