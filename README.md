@@ -47,7 +47,7 @@ Like magic, recipes that fit your criteria are displayed for your culinary pleas
 
 ## Demo
 
-- [Live Demo](https://paul---.github.io/recipeApp/) -best Viewed on smartphone or tablet.
+- [Live Demo](https://paul---.github.io/recipeApp/) -Food 4 Fun App
 
 ## Author
 
