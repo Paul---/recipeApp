@@ -39,7 +39,7 @@ $('.search-btn').on('click keypress', function (e) {
 });
 //call search on enter button
 $('#search-ingredients').on('keypress', (e) => {
-  if (e.keyCode === 13 ) {
+  if (e.keyCode === 13) {
     goSearch(e);
   }
 })
@@ -72,7 +72,7 @@ async function returnRecipeArray(ingredients) {
 async function displayRecipes(recipeObj) {
   $('.recipe-list').html('');
   if (recipeObj.recipes.length === 0) {
-    $('.fetching').addClass('hidden');
+    $('.fetching-sec').addClass('hidden');
     $('.no-results').removeClass('hidden');
   } else {
     recipeObj.recipes.forEach(el => {
@@ -83,7 +83,7 @@ async function displayRecipes(recipeObj) {
     $('.recipelist-h3').removeClass('hidden')
     $('li').on('click', function (e) {
       e.preventDefault();
-       displaySelectedRecipe($(e.target).closest('li').attr('value'));
+      displaySelectedRecipe($(e.target).closest('li').attr('value'));
       window.scroll({
         top: 100
       })
@@ -95,20 +95,20 @@ async function search(query) {
   //make sure 'no results' message is hidden
   $('.no-results').addClass('hidden');
   //show fetching message
-  $('.fetching').removeClass('hidden');
+  $('.fetching-sec').removeClass('hidden');
   let formattedIngs = formatIngredients(query);
-  let recipeArr = await returnRecipeArray(formattedIngs);
-  await displayRecipes(recipeArr);
-  displaySelectedRecipe(recipeArr.recipes[0].recipe_id);
-  //hide fetching message
-  $('.fetching').addClass('hidden');
-  $('#search-ingredients').val('');
-  $('.selected-recipe-sec').html('');
+  let recipeObj = await returnRecipeArray(formattedIngs);
+    await displayRecipes(recipeObj);
+    displaySelectedRecipe(recipeObj.recipes[0].recipe_id);
+    //hide fetching message
+    $('.fetching-sec').addClass('hidden');
+    $('#search-ingredients').val('');
+    $('.selected-recipe-sec').html('');
 }
 
 async function displaySelectedRecipe(recipeId = 47746) {
   //fetch individual recipe
-  $('.fetching').removeClass('hidden');
+  $('.fetching-sec').removeClass('hidden');
   let chosenRecipe = await fetch(`${ApiUrlGet}${apiKey}&rId=${recipeId}`).then(res => res.json()).catch(e => {
     errorMsg();
   });
@@ -117,14 +117,14 @@ async function displaySelectedRecipe(recipeId = 47746) {
   let res = await chosenRecipe.recipe.ingredients;
 
   if (res === undefined) {
-    $('.fetching').addClass('hidden');
+    $('.fetching-sec').addClass('hidden');
     alert('Broken Link--Please Try A Different One');
   }
   res.forEach(el => {
-  ingredientsList += `<li class="ingredients-li">${el}</li>`;
+    ingredientsList += `<li class="ingredients-li">${el}</li>`;
   });
   //Hide fetching message
-  $('.fetching').addClass('hidden');
+  $('.fetching-sec').addClass('hidden');
   //Display selected recipe
   $('.selected-recipe-sec').removeClass('hidden').html(`
   <section role="main" class="chosenRecipe-div">
@@ -158,13 +158,13 @@ async function loadPage(ingredients) {
 
 function errorMsg() {
   //display network error message
-  $('.fetching').addClass('hidden');
+  $('.fetching-sec').addClass('hidden');
   $('.recipe-list-section').addClass('hidden');
   $('.serverErr').addClass('hidden')
   $('.top-section').append(`<h2 class="serverErr">We're encountering network difficulties. Please check your internet connection and try again.</h2>`);
 }
 
-function goSearch(e){
+function goSearch(e) {
   e.preventDefault();
   search($('#search-ingredients').val());
 }
