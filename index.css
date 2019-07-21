@@ -363,6 +363,10 @@ figcaption {
     display: none;
   }
 
+  .fetching{
+    max-width:1200px;
+  }
+
   .loading-div {
     display: flex;
     width: 1000px;
