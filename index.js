@@ -5,7 +5,7 @@ const ApiUrlGet = `https://www.food2fork.com/api/get?key=`,
 
 
 let apiKey, ingredients = '',
-// Required API Keys
+  // Required API Keys
   keyArr = [
     '43bff83dd6c189993665cc861c3d9680',
     '5c690c2fd121d8d3d51a524d7ed62c05',
@@ -104,7 +104,7 @@ async function search(query) {
   $('.selected-recipe-sec').html('');
 }
 
-async function displaySelectedRecipe(recipeId=47746) {
+async function displaySelectedRecipe(recipeId = 47746) {
   //fetch individual recipe
   $('.fetching').removeClass('hidden');
   let chosenRecipe = await fetch(`${ApiUrlGet}${apiKey}&rId=${recipeId}`).then(res => res.json());
@@ -113,8 +113,9 @@ async function displaySelectedRecipe(recipeId=47746) {
   await chosenRecipe.recipe.ingredients.forEach(el => {
     ingredientsList += `<li class="ingredients-li">${el}</li>`;
   });
+  //Hide fetching message
   $('.fetching').addClass('hidden');
-
+  //Display selected recipe
   $('.selected-recipe-sec').removeClass('hidden').html(`<section role="main" class="chosenRecipe-div"><div class="container chosen-recipe-h2-div"><h2 role="heading" class="chosen-recipe-h2">${chosenRecipe.recipe.title}</h2></div><figure><img role="image" class="chosen-img" src="${chosenRecipe.recipe.image_url}" alt="${chosenRecipe.recipe.title}" title="${chosenRecipe.recipe.title}" /><div class="container published-by-caption"> <figcaption role="caption">Published by: ${chosenRecipe.recipe.publisher}</figcaption></div></figure><br> <div class="container button-div"> <button role="button" class="btn print-recipe-btn" type="button" value="Print" onclick="printFunction()">Print</button>
   <button role="button" class="btn directons-btn" type="button" value="Get Directions" onclick="getDirections('${chosenRecipe.recipe.source_url}')">Get Directions</button></div> <div class="recipe-list-div"><ul class="recipe-inigredients">${ingredientsList}</ul></div></section>`);
 }
@@ -124,7 +125,7 @@ async function loadPage(ingredients) {
   let arr = await returnRecipeArray(ingredients);
   $('.loading-div').remove();
   displayRecipes(arr);
-  displaySelectedRecipe(arr.recipes[Math.floor(Math.random()* Math.floor(30))].recipe_id);
+  displaySelectedRecipe(arr.recipes[Math.floor(Math.random() * Math.floor(30))].recipe_id);
 }
 
 function printFunction() {
@@ -138,16 +139,4 @@ function getDirections(url) {
 
 //initial page load
 $(loadPage(ingredients));
-
-//  chosenRecipe.recipe returns -->
-// { publisher: "Simply Recipes", f2f_url: "http://food2fork.com/view/36611", ingredients: Array(9), source_url: "http://www.simplyrecipes.com/recipes/moms_roast_turkey/", recipe_id: "36611", … }
-// f2f_url: "http://food2fork.com/view/36611"
-// image_url: "http://static.food2fork.com/momsroastturkey520a300x189c6d75af3.jpg"
-// ingredients: (9)["1 turkey, approx. 15 lbs.*", "Juice of a lemon", "Salt and pepper", "Olive oil or melted butter", "1/2 yellow onion, peeled and quartered", "Tops and bottoms of a bunch of celery", "2 carrots", "Parsley", "Sprigs of fresh rosemary, thyme↵"]
-// publisher: "Simply Recipes"
-// publisher_url: "http://simplyrecipes.com"
-// recipe_id: "36611"
-// social_rank: 99.9999999886814
-// source_url: "http://www.simplyrecipes.com/recipes/moms_roast_turkey/"
-// title: "Mom&#8217;s Roast Turkey"
 

@@ -40,7 +40,7 @@ h1 {
   display: inline-block;
   font-size: 35px;
   color: rgb(25, 136, 225);
-  font-family: 'Libre Baskerville',serif;
+  font-family: 'Libre Baskerville', serif;
   background-color: white;
   border-radius: 3px;
   width: 550%;
@@ -92,9 +92,9 @@ h2 {
   top: .5px;
 }
 
-.check-below{
+.check-below {
   font-size: .9em;
-  margin-top:3px;
+  margin-top: 3px;
   margin-bottom: 3px;
 }
 
@@ -355,11 +355,11 @@ figcaption {
   .top-section {
     display: inline-block;
     height: 250px;
-    max-width:100%;
-    margin:2px;
+    max-width: 100%;
+    margin: 2px;
   }
 
-  .check-below{
+  .check-below {
     display: none;
   }
 
@@ -381,7 +381,7 @@ figcaption {
     width: 50%;
     font-size: .9em;
     position: relative;
-    left:5px;
+    left: 5px;
   }
 
   ol {
@@ -391,7 +391,7 @@ figcaption {
 
   .selected-recipe-sec {
     position: relative;
-    right:5px;
+    right: 5px;
     display: inline-block;
     width: 48%;
     float: right;
