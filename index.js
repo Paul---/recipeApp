@@ -4,7 +4,6 @@
 const ApiUrlGet = `https://www.food2fork.com/api/get?key=`,
   ApiUrlSearch = `https://www.food2fork.com/api/search?key=`;
 
-
 let apiKey, ingredients = '',
   // Required API Keys
   keyArr = [
@@ -57,11 +56,7 @@ async function returnRecipeArray(ingredients) {
   do {
     apiKey = keyArr[keyNum];
     response = await fetch(`${ApiUrlSearch}${apiKey}&q=${ingredients}&sort=r/`).then(res => res.json()).catch(e => {
-      //display network error message
-      $('.fetching').addClass('hidden');
-      $('.recipe-list-section').addClass('hidden');
-      $('.serverErr').addClass('hidden')
-      $('.top-section').append(`<h2 class="serverErr">We're encountering network difficulties. Please check your internet connection and try again.</h2>`);
+      errorMsg();
     });
     apiKey = keyArr[keyNum];
     keyNum++;
@@ -70,11 +65,8 @@ async function returnRecipeArray(ingredients) {
   let URL = `${ApiUrlSearch}${apiKey}&q=${ingredients}&sort=r/`;
   let resultsObj = await fetch(URL).then(res => res.json()).then(res => res).catch(e => {
     //display network error message
-    $('.fetching').addClass('hidden');
-    $('.recipe-list-section').addClass('hidden');
-    $('.serverErr').addClass('hidden')
-    $('.top-section').append(`<h2 class="serverErr">We're encountering network difficulties. Please check your internet connection and try again.</h2>`);
-  });;
+    errorMsg();
+  });
   return resultsObj;
 }
 
@@ -121,11 +113,7 @@ async function displaySelectedRecipe(recipeId = 47746) {
   //fetch individual recipe
   $('.fetching').removeClass('hidden');
   let chosenRecipe = await fetch(`${ApiUrlGet}${apiKey}&rId=${recipeId}`).then(res => res.json()).catch(e => {
-    //display network error message
-    $('.fetching').addClass('hidden');
-    $('.recipe-list-section').addClass('hidden');
-    $('.serverErr').addClass('hidden')
-    $('.top-section').append(`<h2 class="serverErr">We're encountering network difficulties. Please check your internet connection and try again.</h2>`);
+    errorMsg();
   });
   //display large img with description and ingredients for printing
   let ingredientsList = '';
@@ -145,6 +133,14 @@ async function loadPage(ingredients) {
   $('.loading-div').remove();
   displayRecipes(arr);
   displaySelectedRecipe(arr.recipes[Math.floor(Math.random() * Math.floor(30))].recipe_id);
+}
+
+function errorMsg() {
+  //display network error message
+  $('.fetching').addClass('hidden');
+  $('.recipe-list-section').addClass('hidden');
+  $('.serverErr').addClass('hidden')
+  $('.top-section').append(`<h2 class="serverErr">We're encountering network difficulties. Please check your internet connection and try again.</h2>`);
 }
 
 function printFunction() {
