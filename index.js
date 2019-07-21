@@ -7,6 +7,7 @@ const ApiUrlGet = `https://www.food2fork.com/api/get?key=`,
 let apiKey, ingredients = '',
   // Required API Keys
   keyArr = [
+    '64cbf1f4967702e0bbab5feab34b4ff3',
     '0600cbf997ef65c5402b91cc5609bfb9',
     '7242ecab3cd3fd117c6b8e50bd010bef',
     '43bff83dd6c189993665cc861c3d9680',
@@ -119,11 +120,9 @@ async function displaySelectedRecipe(recipeId = 47746) {
   });
   //display large img with description and ingredients for printing
   let ingredientsList = '';
-  await console.log('1 '+ chosenRecipe.recipe.ingredients);
   let res = await chosenRecipe.recipe.ingredients;
-  console.log('2 ' + res);
   if (res === undefined) {
-    errorMsg();
+    alert('Broken Link--Please Try A Different One');
   }
   res.forEach(el => {
   ingredientsList += `<li class="ingredients-li">${el}</li>`;
