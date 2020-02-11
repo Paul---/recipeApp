@@ -161,7 +161,7 @@ function errorMsg() {
   $('.fetching-sec').addClass('hidden');
   $('.recipe-list-section').addClass('hidden');
   $('.serverErr').addClass('hidden')
-  $('.top-section').append(`<h2 class="serverErr">We're encountering network difficulties. Please check your internet connection and try again.</h2>`);
+  $('.top-section').append(`<h2 class="serverErr">It is with great regret that we inform you that our third-party recipe api has become defunt and this application is no longer being updated. Thank you to all those that enjoyed this fun food app! </h2>`);
 }
 
 function goSearch(e) {
