@@ -1,6 +1,6 @@
 # Food 4 Fun Recipe App 
 
-**** The third-party api used for this app has sadly been shut down ****
+**** The third-party api used for this app has sadly been shut down and this application has not yet been updated to full functionality.****
 
 An intuitive application that will help you discover delicious, fun recipes from around the world from the comfort of a computer or smartphone.
 
